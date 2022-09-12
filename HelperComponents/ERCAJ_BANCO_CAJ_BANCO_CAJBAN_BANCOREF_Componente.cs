@@ -15,8 +15,18 @@ namespace ERCAJ_BANCO_proj.HelperComponents
 		}
 
 		
+public event EventHandler<string> EventBind;
 public bool IsEnabled { get; set; } = true;
-public string Text { get; set; } = "prueba";
+public string Text { 
+    get
+    {
+        return Text;
+    }
+    set
+    {
+        EventBind.Invoke(this, value);
+    }
+}
 
 	}
 }

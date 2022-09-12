@@ -1,0 +1,24 @@
+
+.page[b-420bthmw86] {
+    height: 100%;
+    overflow: hidden;
+}
+
+[b-420bthmw86] .content {
+    padding: 1.1rem 2rem 0 2rem;
+    overflow: auto;
+}
+
+@media (max-width: 1199.98px) {
+    [b-420bthmw86] .page-layout > .dx-gridlayout-root {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+}
+
+[b-420bthmw86] .fit-width {
+    max-width: 100%;
+}
+
+[b-420bthmw86] .mw-1100 {
+    max-width: 1100px;
+}
