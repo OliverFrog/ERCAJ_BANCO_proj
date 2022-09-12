@@ -1,0 +1,111 @@
+
+@page "/"
+
+@using BlazeMaxControls.Components.VXComponents.TransactionVersion
+@using DevExpress.Blazor
+@using BlazeMaxControls.Helpers
+@using ERCAJ_BANCO_proj.Components
+@using veXMAX.Shared.Attributes
+@using veXMAX.Shared.Models.Transactions
+@using veXMAX.Resources
+@using Newtonsoft.Json
+@using Microsoft.Extensions.Localization
+@using veXMAX.Lib.Extension
+
+<ERCAJ_BANCO_proj.Components.VxToolbarNav TTrans="ERCAJ_BANCO" @bind-Model="_ERCAJ_BANCO"/>
+<DxFormLayout>
+
+<EditForm Model="@_ERCAJ_BANCO.CAJ_BANCO" Context="editFormContext">
+<DataAnnotationsValidator />
+<VxFormValidator ValidatorType="(typeof(CAJ_BANCOValidator))"/>
+
+
+ <DxFormLayoutGroup Caption="Tabulador" ColSpanLg="12" BeginRow=false> 
+
+ <DxFormLayoutTabPages Caption="Tabulador" ColSpanXl="12" >
+<DxFormLayoutTabPage Caption = "Transacción" ColSpanLg = "12" >
+
+ <DxFormLayoutGroup Caption="Tabulador" ColSpanLg="6" BeginRow=false> 
+<DxFormLayoutItem Field = "_ERCAJ_BANCO.CAJ_BANCO.SYSUDN_CODIGO_K" Caption =@L["CAJ_BANCO_SYSUDN_CODIGO_K"] BeginRow=false ColSpanMd=6 >
+<DxTextBox @bind-Text="@funciones.ERCAJ_BANCO_CAJ_BANCO_SYSUDN_CODIGO_K_Componente.Text" @onchange="ERCAJ_BANCO_CAJ_BANCO_SYSUDN_CODIGO_K_OnChange" @onfocus="ERCAJ_BANCO_CAJ_BANCO_SYSUDN_CODIGO_K_OnFocus" @onblur="ERCAJ_BANCO_CAJ_BANCO_SYSUDN_CODIGO_K_OnBlur" Enabled="@funciones.ERCAJ_BANCO_CAJ_BANCO_SYSUDN_CODIGO_K_Componente.IsEnabled"/>
+<ValidationMessage For="(() => _ERCAJ_BANCO.CAJ_BANCO.SYSUDN_CODIGO_K)" />
+</DxFormLayoutItem>
+<DxFormLayoutItem Field ="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_FECHA" Caption =@L["CAJ_BANCO_CAJBAN_FECHA"] BeginRow =false ColSpanMd =6 >
+<DxDateEdit Date="@_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_FECHA" T="DateTime" DateChanged="@((v) => ERCAJ_BANCO_CAJ_BANCO_CAJBAN_FECHA_OnChange(v))" DateExpression="@(() => _ERCAJ_BANCO.CAJ_BANCO.CAJBAN_FECHA)" @onfocus="ERCAJ_BANCO_CAJ_BANCO_CAJBAN_FECHA_OnFocus" @onblur="ERCAJ_BANCO_CAJ_BANCO_CAJBAN_FECHA_OnBlur" Enabled="@ERCAJ_BANCO_CAJ_BANCO_CAJBAN_FECHA_IsEnabled"/>
+<ValidationMessage For="(() => _ERCAJ_BANCO.CAJ_BANCO.CAJBAN_FECHA)" />
+</DxFormLayoutItem >
+<DxFormLayoutItem Field = "_ERCAJ_BANCO.CAJ_BANCO.SYSTRA_CODIGO_K" Caption =@L["CAJ_BANCO_SYSTRA_CODIGO_K"] BeginRow=false ColSpanMd=12 >
+<DxTextBox @bind-Text="@funciones.ERCAJ_BANCO_CAJ_BANCO_SYSTRA_CODIGO_K_Componente.Text" @onchange="ERCAJ_BANCO_CAJ_BANCO_SYSTRA_CODIGO_K_OnChange" @onfocus="ERCAJ_BANCO_CAJ_BANCO_SYSTRA_CODIGO_K_OnFocus" @onblur="ERCAJ_BANCO_CAJ_BANCO_SYSTRA_CODIGO_K_OnBlur" Enabled="@funciones.ERCAJ_BANCO_CAJ_BANCO_SYSTRA_CODIGO_K_Componente.IsEnabled"/>
+<ValidationMessage For="(() => _ERCAJ_BANCO.CAJ_BANCO.SYSTRA_CODIGO_K)" />
+</DxFormLayoutItem>
+<DxFormLayoutItem Field = "_ERCAJ_BANCO.CAJ_BANCO.SYSTTP_CODIGO_K" Caption =@L["CAJ_BANCO_SYSTTP_CODIGO_K"] BeginRow=false ColSpanMd=12 >
+<DxTextBox @bind-Text="@funciones.ERCAJ_BANCO_CAJ_BANCO_SYSTTP_CODIGO_K_Componente.Text" @onchange="ERCAJ_BANCO_CAJ_BANCO_SYSTTP_CODIGO_K_OnChange" @onfocus="ERCAJ_BANCO_CAJ_BANCO_SYSTTP_CODIGO_K_OnFocus" @onblur="ERCAJ_BANCO_CAJ_BANCO_SYSTTP_CODIGO_K_OnBlur" Enabled="@funciones.ERCAJ_BANCO_CAJ_BANCO_SYSTTP_CODIGO_K_Componente.IsEnabled"/>
+<ValidationMessage For="(() => _ERCAJ_BANCO.CAJ_BANCO.SYSTTP_CODIGO_K)" />
+</DxFormLayoutItem>
+<DxFormLayoutItem Field = "_ERCAJ_BANCO.CAJ_BANCO.SYSTTS_CODIGO_K" Caption =@L["CAJ_BANCO_SYSTTS_CODIGO_K"] BeginRow=false ColSpanMd=12 >
+<DxTextBox @bind-Text="@funciones.ERCAJ_BANCO_CAJ_BANCO_SYSTTS_CODIGO_K_Componente.Text" @onchange="ERCAJ_BANCO_CAJ_BANCO_SYSTTS_CODIGO_K_OnChange" @onfocus="ERCAJ_BANCO_CAJ_BANCO_SYSTTS_CODIGO_K_OnFocus" @onblur="ERCAJ_BANCO_CAJ_BANCO_SYSTTS_CODIGO_K_OnBlur" Enabled="@funciones.ERCAJ_BANCO_CAJ_BANCO_SYSTTS_CODIGO_K_Componente.IsEnabled"/>
+<ValidationMessage For="(() => _ERCAJ_BANCO.CAJ_BANCO.SYSTTS_CODIGO_K)" />
+</DxFormLayoutItem>
+<DxFormLayoutItem Field = "_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_TIPOCAMBIO" Caption =@L["CAJ_BANCO_CAJBAN_TIPOCAMBIO"] BeginRow =false ColSpanMd =6 >
+ <DxSpinEdit @bind-Value = "_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_TIPOCAMBIO" />
+</DxFormLayoutItem >
+<DxFormLayoutItem Field = "_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_VALOR_MI" Caption =@L["CAJ_BANCO_CAJBAN_VALOR_MI"] BeginRow =false ColSpanMd =6 >
+ <DxSpinEdit @bind-Value = "_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_VALOR_MI" />
+</DxFormLayoutItem >
+<DxFormLayoutItem Field = "_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_BANCOREF" Caption =@L["CAJ_BANCO_CAJBAN_BANCOREF"] BeginRow=false ColSpanMd=6 >
+<DxTextBox @bind-Text="@funciones.ERCAJ_BANCO_CAJ_BANCO_CAJBAN_BANCOREF_Componente.Text" @onchange="ERCAJ_BANCO_CAJ_BANCO_CAJBAN_BANCOREF_OnChange" @onfocus="ERCAJ_BANCO_CAJ_BANCO_CAJBAN_BANCOREF_OnFocus" @onblur="ERCAJ_BANCO_CAJ_BANCO_CAJBAN_BANCOREF_OnBlur" Enabled="@funciones.ERCAJ_BANCO_CAJ_BANCO_CAJBAN_BANCOREF_Componente.IsEnabled"/>
+<ValidationMessage For="(() => _ERCAJ_BANCO.CAJ_BANCO.CAJBAN_BANCOREF)" />
+</DxFormLayoutItem>
+<DxFormLayoutItem Caption =@L["CAJ_BANCO_CAJBAN_OBSERVACION"] BeginRow =false ColSpanMd =12 CssClass="@(12 > 0 ? $"col-xxl-12" : string.Empty)" >
+<DxMemo @bind-Text ="@_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_OBSERVACION" Rows ="5" ResizeMode = "MemoResizeMode.Vertical"/> 
+</DxFormLayoutItem >
+
+</DxFormLayoutGroup>
+ <DxFormLayoutGroup Caption="Datos" ColSpanLg="6" BeginRow=false> 
+<DxFormLayoutItem Field ="_ERCAJ_BANCO.CAJ_BANCO.S_MAQEDO" Caption =@L["CAJ_BANCO_S_MAQEDO"] BeginRow =false ColSpanMd =12 >
+<Template>
+<div class="d-flex">
+<div class="me-1 flex-grow-1 flex-shrink-1">
+<DxComboBox Data="Enum.GetValues(_ERCAJ_BANCO.CAJ_BANCO.S_MAQEDO.GetType()).OfType<Enum>().Select(t => new ComboEnumWrapper {Type = t, DisplayText = t.ToSafeString()}).ToList()" TextFieldName="@nameof(ComboEnumWrapper.DisplayText)" ValueFieldName ="@nameof(ComboEnumWrapper.Type)" @bind-Value ="_ERCAJ_BANCO.CAJ_BANCO.S_MAQEDO" SelectedItemChanged="@(val => { sMaqEdoDesc = $"{val.ToInt16()} - {val.ToString()}"; StateHasChanged(); })" />
+</div>
+<div class="ms-1 flex-grow-1 flex-shrink-1">
+<DxTextBox @bind-Text="@sMaqEdoDesc" ReadOnly="true" />
+</div>
+</div>
+</Template>
+</DxFormLayoutItem>
+<DxFormLayoutItem Field = "_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_SERIE_K" Caption =@L["CAJ_BANCO_CAJBAN_SERIE_K"] BeginRow=false ColSpanMd=5 >
+<DxTextBox @bind-Text="@funciones.ERCAJ_BANCO_CAJ_BANCO_CAJBAN_SERIE_K_Componente.Text" @onchange="ERCAJ_BANCO_CAJ_BANCO_CAJBAN_SERIE_K_OnChange" @onfocus="ERCAJ_BANCO_CAJ_BANCO_CAJBAN_SERIE_K_OnFocus" @onblur="ERCAJ_BANCO_CAJ_BANCO_CAJBAN_SERIE_K_OnBlur" Enabled="@funciones.ERCAJ_BANCO_CAJ_BANCO_CAJBAN_SERIE_K_Componente.IsEnabled"/>
+<ValidationMessage For="(() => _ERCAJ_BANCO.CAJ_BANCO.CAJBAN_SERIE_K)" />
+</DxFormLayoutItem>
+<DxFormLayoutItem Field = "_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_FOLIO_K" Caption =@L["CAJ_BANCO_CAJBAN_FOLIO_K"] BeginRow =false ColSpanMd =7 >
+ <DxSpinEdit @bind-Value = "_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_FOLIO_K" />
+</DxFormLayoutItem >
+<DxFormLayoutItem Field = "_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_REFERENCIA" Caption =@L["CAJ_BANCO_CAJBAN_REFERENCIA"] BeginRow=false ColSpanMd=12 >
+<DxTextBox @bind-Text="@funciones.ERCAJ_BANCO_CAJ_BANCO_CAJBAN_REFERENCIA_Componente.Text" @onchange="ERCAJ_BANCO_CAJ_BANCO_CAJBAN_REFERENCIA_OnChange" @onfocus="ERCAJ_BANCO_CAJ_BANCO_CAJBAN_REFERENCIA_OnFocus" @onblur="ERCAJ_BANCO_CAJ_BANCO_CAJBAN_REFERENCIA_OnBlur" Enabled="@funciones.ERCAJ_BANCO_CAJ_BANCO_CAJBAN_REFERENCIA_Componente.IsEnabled"/>
+<ValidationMessage For="(() => _ERCAJ_BANCO.CAJ_BANCO.CAJBAN_REFERENCIA)" />
+</DxFormLayoutItem>
+<DxFormLayoutItem Field = "_ERCAJ_BANCO.CAJ_BANCO.CONPOL_REFERENCIA" Caption =@L["CAJ_BANCO_CONPOL_REFERENCIA"] BeginRow=false ColSpanMd=12 >
+<DxTextBox @bind-Text="@funciones.ERCAJ_BANCO_CAJ_BANCO_CONPOL_REFERENCIA_Componente.Text" @onchange="ERCAJ_BANCO_CAJ_BANCO_CONPOL_REFERENCIA_OnChange" @onfocus="ERCAJ_BANCO_CAJ_BANCO_CONPOL_REFERENCIA_OnFocus" @onblur="ERCAJ_BANCO_CAJ_BANCO_CONPOL_REFERENCIA_OnBlur" Enabled="@funciones.ERCAJ_BANCO_CAJ_BANCO_CONPOL_REFERENCIA_Componente.IsEnabled"/>
+<ValidationMessage For="(() => _ERCAJ_BANCO.CAJ_BANCO.CONPOL_REFERENCIA)" />
+</DxFormLayoutItem>
+
+</DxFormLayoutGroup>
+</DxFormLayoutTabPage>
+</DxFormLayoutTabPages>
+</DxFormLayoutGroup>
+ <DxFormLayoutGroup Caption="Billetes y Monedas" ColSpanLg="12" BeginRow=false> 
+
+</DxFormLayoutGroup>
+
+</EditForm>
+
+</DxFormLayout>
+
+<h4>Detalles de la Transaccion</h4>
+<pre>
+<code>
+		@(JsonConvert.SerializeObject(_ERCAJ_BANCO, Formatting.Indented))
+	</code>
+</pre>
+
